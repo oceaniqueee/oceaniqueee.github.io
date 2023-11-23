@@ -6,23 +6,15 @@
     <title>Cookie Clicker Clone</title>
     <style>
         body {
-            background: url('https://media.istockphoto.com/id/472984233/video/falling-mixed-cookies.jpg?s=640x640&k=20&c=YTDDkt4BoF6rWNaFlfCjM-viOIKYbTZALF3LGazHSwU=') no-repeat center center fixed;
-            background-size: cover;
+            background-color: white;
             color: black;
             font-family: 'Arial', sans-serif;
             text-align: center;
-            margin: 0;
-        }
-
-        #cookie-container {
-            display: inline-block;
         }
 
         #cookie {
             cursor: pointer;
-            transition: transform 0.2s ease-in-out;
-            animation: bounce 0.6s ease;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5); /* Darker and circular drop shadow */
+            animation: pulse 0.4s ease-in-out;
         }
 
         #cookie img {
@@ -30,12 +22,10 @@
             height: 100px;
         }
 
-        #cookie.clicked {
-            transform: scale(0.9);
-        }
-
-        #cookie:hover {
-            transform: scale(1.1);
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.9); }
+            100% { transform: scale(1); }
         }
 
         #cookie-count {
@@ -50,7 +40,6 @@
             cursor: pointer;
             background-color: #AEF98D;
             color: black;
-            width: 100px; /* Set button width to match image */
         }
 
         #auto-clicker, #grandma {
@@ -61,22 +50,10 @@
             font-size: 14px;
             color: #AEF98D;
         }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: scale(1);
-            }
-            40% {
-                transform: scale(0.9);
-            }
-            60% {
-                transform: scale(1.05);
-            }
-        }
     </style>
 </head>
 <body>
-    <div id="cookie-container">
+    <div>
         <div id="cookie" onclick="cookieClick()">
             <img src="https://pngimg.com/uploads/cookie/cookie_PNG13689.png" alt="Cookie Image">
         </div>
@@ -98,32 +75,12 @@
     <script src="script.js"></script>
     <script>
         function cookieClick() {
-            // Get the cookie element
-            const cookie = document.getElementById('cookie');
-
-            // Add the 'clicked' class to trigger the bounce animation
-            cookie.classList.add('clicked');
-
             // Increment the cookie count when the cookie is clicked
             cookieCount++;
 
             // Update the cookie count on the page
             updateCookieCount();
-
-            // Remove the 'clicked' class after a short delay to revert the animation
-            setTimeout(function () {
-                cookie.classList.remove('clicked');
-            }, 200);
         }
-
-        // Trigger bounce animation on page load and after the image is clicked
-        window.onload = function () {
-            const cookie = document.getElementById('cookie');
-            cookie.classList.add('clicked');
-            setTimeout(function () {
-                cookie.classList.remove('clicked');
-            }, 600);
-        };
     </script>
 </body>
 </html>
