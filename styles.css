@@ -1,86 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookie Clicker Clone</title>
-    <style>
-        body {
-            background-color: white;
-            color: black;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-        }
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
 
-        #cookie {
-            cursor: pointer;
-            animation: pulse 0.4s ease-in-out;
-        }
+#chat-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-        #cookie img {
-            width: 100px;
-            height: 100px;
-        }
+#chat-messages {
+    height: 300px;
+    overflow-y: scroll;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(0.9); }
-            100% { transform: scale(1); }
-        }
+#chat-input {
+    display: flex;
+}
 
-        #cookie-count {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+#message-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+}
 
-        .button {
-            font-size: 16px;
-            padding: 8px;
-            margin: 5px;
-            cursor: pointer;
-            background-color: #AEF98D;
-            color: black;
-        }
-
-        #auto-clicker, #grandma {
-            font-size: 16px;
-        }
-
-        #auto-clicker-price, #grandma-price {
-            font-size: 14px;
-            color: #AEF98D;
-        }
-    </style>
-</head>
-<body>
-    <div>
-        <div id="cookie" onclick="cookieClick()">
-            <img src="https://pngimg.com/uploads/cookie/cookie_PNG13689.png" alt="Cookie Image">
-        </div>
-        <p id="cookie-count">Cookies: <span id="cookie-count">0</span></p>
-    </div>
-
-    <div>
-        <button id="buy-auto-clicker" class="button">Buy Auto Clicker</button>
-        <span id="auto-clicker-price">Price: 10 Cookies</span>
-        <button id="auto-clicker" class="button">Auto Clicker (0) (Cookies/sec: 0)</button>
-    </div>
-
-    <div>
-        <button id="buy-grandma" class="button">Buy Grandma</button>
-        <span id="grandma-price">Price: 100 Cookies</span>
-        <button id="grandma" class="button">Grandma (0) (Cookies/sec: 0)</button>
-    </div>
-
-    <script src="script.js"></script>
-    <script>
-        function cookieClick() {
-            // Increment the cookie count when the cookie is clicked
-            cookieCount++;
-
-            // Update the cookie count on the page
-            updateCookieCount();
-        }
-    </script>
-</body>
-</html>
+button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

@@ -3,127 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookie Clicker Clone</title>
-    <style>
-        body {
-            background: url('https://media.istockphoto.com/id/472984233/video/falling-mixed-cookies.jpg?s=640x640&k=20&c=YTDDkt4BoF6rWNaFlfCjM-viOIKYbTZALF3LGazHSwU=') no-repeat center center fixed;
-            background-size: cover;
-            color: black;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            margin: 0;
-        }
-
-        #cookie-container {
-            display: inline-block;
-        }
-
-        #cookie {
-            cursor: pointer;
-            transition: transform 0.2s ease-in-out;
-            animation: bounce 0.6s ease;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5); /* Darker and circular drop shadow */
-        }
-
-        #cookie img {
-            width: 100px;
-            height: 100px;
-        }
-
-        #cookie.clicked {
-            transform: scale(0.9);
-        }
-
-        #cookie:hover {
-            transform: scale(1.1);
-        }
-
-        #cookie-count {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .button {
-            font-size: 16px;
-            padding: 8px;
-            margin: 5px;
-            cursor: pointer;
-            background-color: #AEF98D;
-            color: black;
-            width: 100px; /* Set button width to match image */
-        }
-
-        #auto-clicker, #grandma {
-            font-size: 16px;
-        }
-
-        #auto-clicker-price, #grandma-price {
-            font-size: 14px;
-            color: #AEF98D;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: scale(1);
-            }
-            40% {
-                transform: scale(0.9);
-            }
-            60% {
-                transform: scale(1.05);
-            }
-        }
-    </style>
+    <title>Chat Forum with Profiles</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="cookie-container">
-        <div id="cookie" onclick="cookieClick()">
-            <img src="https://pngimg.com/uploads/cookie/cookie_PNG13689.png" alt="Cookie Image">
+    <div id="app">
+        <div id="chat-container">
+            <div id="chat-messages"></div>
+            <div id="chat-input">
+                <input type="text" id="message-input" placeholder="Type your message...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
         </div>
-        <p id="cookie-count">Cookies: <span id="cookie-count">0</span></p>
+
+        <div id="profile-container">
+            <h2>Profile</h2>
+            <div id="user-profile">
+                <img id="profile-pic" src="" alt="Profile Picture">
+                <p id="username"></p>
+                <button onclick="signOut()">Sign Out</button>
+            </div>
+        </div>
     </div>
 
-    <div>
-        <button id="buy-auto-clicker" class="button">Buy Auto Clicker</button>
-        <span id="auto-clicker-price">Price: 10 Cookies</span>
-        <button id="auto-clicker" class="button">Auto Clicker (0) (Cookies/sec: 0)</button>
-    </div>
-
-    <div>
-        <button id="buy-grandma" class="button">Buy Grandma</button>
-        <span id="grandma-price">Price: 100 Cookies</span>
-        <button id="grandma" class="button">Grandma (0) (Cookies/sec: 0)</button>
-    </div>
-
+    <script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js"></script>
     <script src="script.js"></script>
-    <script>
-        function cookieClick() {
-            // Get the cookie element
-            const cookie = document.getElementById('cookie');
-
-            // Add the 'clicked' class to trigger the bounce animation
-            cookie.classList.add('clicked');
-
-            // Increment the cookie count when the cookie is clicked
-            cookieCount++;
-
-            // Update the cookie count on the page
-            updateCookieCount();
-
-            // Remove the 'clicked' class after a short delay to revert the animation
-            setTimeout(function () {
-                cookie.classList.remove('clicked');
-            }, 200);
-        }
-
-        // Trigger bounce animation on page load and after the image is clicked
-        window.onload = function () {
-            const cookie = document.getElementById('cookie');
-            cookie.classList.add('clicked');
-            setTimeout(function () {
-                cookie.classList.remove('clicked');
-            }, 600);
-        };
-    </script>
 </body>
 </html>
+<!-- Add a new button for navigating to the settings page -->
+<button onclick="goToSettings()">Account Settings</button>
