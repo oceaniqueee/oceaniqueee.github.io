@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const apiKey = 'keyYurexeESWy31sK'; // Replace with your Airtable API key
-    const baseId = 'app1FO8Dyc0awQ1jo' // Replace with your Airtable Base ID
+    const apiKey = 'patkqoSMXyJT2r2rU'; // Replace with your Airtable API key
+    const baseId = 'app1FO8Dyc0awQ1jo'; // Replace with your Airtable Base ID
     const tableName = 'art'; // Replace with your Airtable Table Name
 
     const url = `https://api.airtable.com/v0/${baseId}/${tableName}`;
