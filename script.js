@@ -1,42 +1,30 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const apiKey = 'patkqoSMXyJT2r2rU'; // Replace with your Airtable API key
+    const personalAccessToken = 'patkqoSMXyJT2r2rU.bf9dfb57446248ff640177ba3054d485c96d5fa716c2d537af4412e98f033fce'; // Replace with your Airtable API key
     const baseId = 'app1FO8Dyc0awQ1jo'; // Replace with your Airtable Base ID
     const tableName = 'art'; // Replace with your Airtable Table Name
 
     const url = `https://api.airtable.com/v0/${baseId}/${tableName}`;
     const headers = {
-        Authorization: `Bearer ${apiKey}`,
+        Authorization: `Bearer ${personalAccessToken}`,
     };
 
     fetch(url, { headers })
-        .then((response) => response.json())
-        .then((data) => {
-            const itemsContainer = document.getElementById('items-container');
-            data.records.forEach((record) => {
-                const item = record.fields;
-
-                const itemElement = document.createElement('div');
-                itemElement.classList.add('item');
-
-                const imgElement = document.createElement('img');
-                imgElement.src = item.Image[0].url; // Assuming Image is an attachment field
-                itemElement.appendChild(imgElement);
-
-                const titleElement = document.createElement('h2');
-                titleElement.textContent = item.Name;
-                itemElement.appendChild(titleElement);
-
-                const descriptionElement = document.createElement('p');
-                descriptionElement.textContent = item.Description;
-                itemElement.appendChild(descriptionElement);
-
-                const priceElement = document.createElement('p');
-                priceElement.classList.add('price');
-                priceElement.textContent = `$${item.Price}`;
-                itemElement.appendChild(priceElement);
-
-                itemsContainer.appendChild(itemElement);
-            });
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
         })
-        .catch((error) => console.error('Error fetching data:', error));
+        .then((data) => {
+            console.log(data); // Log the response to see its structure
+
+            if (data.records) {
+                data.records.forEach((record) => {
+                    console.log('Retrieved', record.fields.Name); // Adjust based on your field names
+                });
+            } else {
+                console.error('No records found.');
+            }
+        })
+        .catch((error) => console.error('Error:', error));
 });
